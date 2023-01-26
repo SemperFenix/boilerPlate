@@ -67,21 +67,22 @@
     ```
 
     - Las opciones a seleccionar son:
-      ![Primera opción de eslint](/images/first-eslint-question.jpg)
 
-      ![Segunda opción de eslint](/images/second-eslint-question.jpg)
+      - ![Primera opción de eslint](./images/first-eslint-question.jpg)
 
-      ![Tercera opción de eslint](/images/third-eslint-question.jpg)
+      - ![Segunda opción de eslint](./images/second-eslint-question.jpg)
 
-      ![Cuarta opción de eslint](/images/forth-eslint-question.jpg)
+      - ![Tercera opción de eslint](./images/third-eslint-question.jpg)
 
-      ![Quinta opción de eslint](/images/fifth-eslint-question.jpg)
+      - ![Cuarta opción de eslint](./images/forth-eslint-question.jpg)
 
-      ![Sexta opción de eslint](/images/sixth-eslint-question.jpg)
+      - ![Quinta opción de eslint](./images/fifth-eslint-question.jpg)
 
-      ![Séptima opción de eslint](/images/seventh-eslint-question.jpg)
+      - ![Sexta opción de eslint](./images/sixth-eslint-question.jpg)
 
-      ![Octava opción de eslint](/images/eigth-eslint-question.jpg)
+      - ![Séptima opción de eslint](./images/seventh-eslint-question.jpg)
+
+      - ![Octava opción de eslint](./images/eigth-eslint-question.jpg)
 
       - Para terminar, le permitimos instalar las normas actualizadas a través de **npm**.
 
@@ -107,7 +108,7 @@
     - Crear el archivo _jsconfig.json_ para que intellisense nos sugiera código en los archivos de test (snippets para jest), y añadirle esta línea:
 
       ```json
-      {  "typeAcquisition": { "include":["jest"] } }`
+      { "typeAcquisition": { "include": ["jest"] } }
       ```
 
   - Modificar el archivo package.json para que los módulos ECM6 funcionen correctamente:

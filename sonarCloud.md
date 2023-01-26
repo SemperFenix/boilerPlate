@@ -1,4 +1,8 @@
-# Configurando gitHub actions
+# Configurando gitHub actions y SonarCloud
+
+## GitHub actions
+
+---
 
 - Creamos en nuestro repositorio la carpeta .github/workflows/
 
@@ -47,7 +51,9 @@ jobs:
   - No permitir bypass
   - Requerir status check (opcional)
 
-## Soundcloud
+## SonarCloud
+
+---
 
 - Para analizar el coverage tenemos que desactivar los métodos de análisis automáticos.
 
@@ -59,10 +65,10 @@ jobs:
 
 - Pinchamos en create or update a build file y seleccionamos la opción "other".
 
-- Copiamos el contenido que nos da (**o el modificado facilitado por Alejandro**, _se puede encontrar en la carpeta de este repositorio_) en un archivo creado en la carpeta .github/workflows/nombreQueQueramos.yml
+- Copiamos el contenido que nos da (**o el modificado facilitado por Alejandro**, _se puede encontrar en la carpeta de este repositorio_) en un archivo creado en la carpeta .github/workflows/nombreQueQueramos.yml (en este ejemplo el nombre del archivo será sonar.yml)
 
 ```yml
-name: Sonar
+name: Sonar #Nombre del fichero
 on:
   push:
     branches:
@@ -80,7 +86,7 @@ jobs:
       - name: Install modules
         run: npm ci
       - name: Testing in production with coverage
-        run: npm run test:prod #Change for a valid npm script
+        run: npm run test:prod #Ejecuta los tests que hayamos hecho desde el servidor.
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
@@ -88,7 +94,50 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 ```
 
+---
+
+---
+
+> ### **CUIDADO**
+>
+> La instrucción:
+>
+> ```yml
+> - name: Testing in production with coverage
+>        run: npm run test:prod
+> ```
+>
+> Nos obliga a actualizar el package.json con el script necesario para que se ejecute correctamente, si lo metemos dentro de "test", dejará la consola de producción en --watchAll. [^1]
+>
+> ```json
+> "scripts": {
+>    "test": "jest --watchAll --coverage",
+>    "test:prod": "jest --coverage",
+>    "prepare": "husky install"
+>  },
+> ```
+
+---
+
+---
+
+- Continuamos las instrucciones de SonarCloud y creamos el archivo con nombre `sonar-project.properties` y copiamos dentro el texto que nos da sonar y le añadimos esta línea:
+
+```properties
+sonar.javascript.lcov.reportPaths=coverage/lcov.info
+```
+
+---
+
+---
+
 ## Dudas
+
+---
+
+---
 
 ¿Por qué da este error la github action audit.yml?
 ![Duda error github action](./images/Duda-githubAction.jpg)
+
+[^1]: también se podría utilizar el código --watchAll=false al final de la línea de test.
