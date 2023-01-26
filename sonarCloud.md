@@ -137,7 +137,7 @@ sonar.javascript.lcov.reportPaths=coverage/lcov.info
 
 ---
 
-¿Por qué da este error la github action audit.yml?
+¿Por qué da este error la github action audit.yml? En la carpeta raíz sí que hay un archivo .gitignore
 ![Duda error github action](./images/Duda-githubAction.jpg)
 
 [^1]: también se podría utilizar el código --watchAll=false al final de la línea de test.

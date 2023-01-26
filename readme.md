@@ -34,7 +34,7 @@
 
 - Comenzar con la instalación de los elementos que necesitemos:
 
-  - Crear una rama para la instalación inicial[^1]:
+  - Crear una rama para la instalación inicial:
 
     ```git
     git checkout -b feature/initial-config
@@ -66,25 +66,41 @@
     npx eslint --init
     ```
 
-    - Las opciones a seleccionar son:
+    - Las opciones a seleccionar son[^1]:
 
       - ![Primera opción de eslint](./images/first-eslint-question.jpg)
 
+        > Elegimos la tercera opción
+
       - ![Segunda opción de eslint](./images/second-eslint-question.jpg)
+
+        > **Cuidado** La imagen está mal tomada, es la primera opción (Javascript modules (import/export))
 
       - ![Tercera opción de eslint](./images/third-eslint-question.jpg)
 
+        > Elegimos la tercera opción (de momento)
+
       - ![Cuarta opción de eslint](./images/forth-eslint-question.jpg)
+
+        > Elegimos No (de momento)
 
       - ![Quinta opción de eslint](./images/fifth-eslint-question.jpg)
 
+        > Usamos el espacio para seleccionar ambas opciones y pulsamos enter
+
       - ![Sexta opción de eslint](./images/sixth-eslint-question.jpg)
+
+        > Elegimos la primera opción para importar un conjunto de reglas.
 
       - ![Séptima opción de eslint](./images/seventh-eslint-question.jpg)
 
+        > Seleccionamos el conjunto de normas XO
+
       - ![Octava opción de eslint](./images/eigth-eslint-question.jpg)
 
-      - Para terminar, le permitimos instalar las normas XO actualizadas a través de **npm**.
+        > Elegimos JSON como formato para los archivos de configuración.
+
+      - Para terminar, le permitimos instalar las normas XO actualizadas a través de **_npm_**.
 
   - Configuramos eslint para que funcione adecuadamente con las demás instalaciones:
 
