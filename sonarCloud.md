@@ -38,3 +38,5 @@ jobs:
           excludeTitle: "true" # optional: this excludes the title of a pull request
           checkAllCommitMessages: "true" # optional: this checks all commits associated with a pull request
 ```
+
+- La gitHubAction se ejecuta siempre desde las pulls request.
