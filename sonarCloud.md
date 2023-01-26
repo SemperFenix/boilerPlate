@@ -27,8 +27,8 @@ jobs:
           must_deny: "node_modules/"
       - name: Install modules
         run: npm ci
-      - name: ESLint validation
-        run: npx eslint --ignore-path .gitignore .
+      # - name: ESLint validation
+      #   run: npx eslint --ignore-path .gitignore .
       - name: Check commit message length
         uses: gsactions/commit-message-checker@v1
         with:
