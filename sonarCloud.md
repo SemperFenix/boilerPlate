@@ -1,4 +1,8 @@
-# Configurando gitHub actions
+# Configurando gitHub actions y SonarCloud
+
+## GitHub actions
+
+---
 
 - Creamos en nuestro repositorio la carpeta .github/workflows/
 
@@ -38,3 +42,102 @@ jobs:
           excludeTitle: "true" # optional: this excludes the title of a pull request
           checkAllCommitMessages: "true" # optional: this checks all commits associated with a pull request
 ```
+
+- La gitHubAction se ejecuta siempre desde las pulls request.
+
+- Configurar la protección de rama:
+
+  - Requerir review
+  - No permitir bypass
+  - Requerir status check (opcional)
+
+## SonarCloud
+
+---
+
+- Para analizar el coverage tenemos que desactivar los métodos de análisis automáticos.
+
+- Desde el proyecto de sonarCloud => Administration => Analysis methods
+
+- Desactivamos automático y usamos gitHub Actions.
+
+- Creamos el secret en github (Settings=>Secrets=>Actions) con el token y el valor que nos da SoundCloud.
+
+- Pinchamos en create or update a build file y seleccionamos la opción "other".
+
+- Copiamos el contenido que nos da (**o el modificado facilitado por Alejandro**, _se puede encontrar en la carpeta de este repositorio_) en un archivo creado en la carpeta .github/workflows/nombreQueQueramos.yml (en este ejemplo el nombre del archivo será sonar.yml)
+
+```yml
+name: Sonar #Nombre del fichero
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  sonarcloud:
+    name: SonarCloud
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Install modules
+        run: npm ci
+      - name: Testing in production with coverage
+        run: npm run test:prod #Ejecuta los tests que hayamos hecho desde el servidor.
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+```
+
+---
+
+---
+
+> ### **CUIDADO**
+>
+> La instrucción:
+>
+> ```yml
+> - name: Testing in production with coverage
+>        run: npm run test:prod
+> ```
+>
+> Nos obliga a actualizar el package.json con el script necesario para que se ejecute correctamente, si lo metemos dentro de "test", dejará la consola de producción en --watchAll. [^1]
+>
+> ```json
+> "scripts": {
+>    "test": "jest --watchAll --coverage",
+>    "test:prod": "jest --coverage",
+>    "prepare": "husky install"
+>  },
+> ```
+
+---
+
+---
+
+- Continuamos las instrucciones de SonarCloud y creamos el archivo con nombre `sonar-project.properties` y copiamos dentro el texto que nos da sonar y le añadimos esta línea:
+
+```properties
+sonar.javascript.lcov.reportPaths=coverage/lcov.info
+```
+
+---
+
+---
+
+## Dudas
+
+---
+
+---
+
+¿Por qué da este error la github action audit.yml?
+![Duda error github action](./images/Duda-githubAction.jpg)
+
+[^1]: también se podría utilizar el código --watchAll=false al final de la línea de test.
