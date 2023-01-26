@@ -66,7 +66,7 @@
     npx eslint --init
     ```
 
-    - Las opciones a seleccionar son [^1]:
+    - Las opciones a seleccionar son:
       ![Primera opción de eslint](/images/first-eslint-question.jpg)
 
       ![Segunda opción de eslint](/images/second-eslint-question.jpg)
