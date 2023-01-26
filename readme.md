@@ -84,7 +84,7 @@
 
       - ![Octava opción de eslint](./images/eigth-eslint-question.jpg)
 
-      - Para terminar, le permitimos instalar las normas actualizadas a través de **npm**.
+      - Para terminar, le permitimos instalar las normas XO actualizadas a través de **npm**.
 
   - Configuramos eslint para que funcione adecuadamente con las demás instalaciones:
 
