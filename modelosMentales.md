@@ -87,3 +87,70 @@ JSON.parse(JSON.stringify(obj)); // => Devuelve un objeto a partir de una estruc
 
 // Estos dos métodos (JSON.stringify y JSON.parse) son fundamentales para el intercambio de información en red. Siempre que se envía información a un servidor, se hace en forma de string, para que esté estructurado y al recibirlo se pueda trabajar con él, se utiliza el JSON.stringify.
 ```
+
+## Entendiendo las Clases en JS
+
+---
+
+Javascript tiene un mecanismo que se denomina _**relación prototípica**_, esto hace que las propiedades de los distintos objetos se creen en un almacén común, siendo parte de todos los objetos creados. Por lo tanto, todos los objetos disponen de una propiedad oculta de sistema **\_\_proto\_\_** . Si asignamos una propiedad de esta manera:
+
+```javascript
+let human = { teeth: 32 };
+let gwen = {
+  __proto__: human, // Hacemos que gwen tenga también todas las propiedades de human
+  age: 19,
+};
+gwen.__proto__human;
+console.log(gwen.teeth); // Output 32
+```
+
+Los _proto_ **no son bidireccionales**. Podemos crear un objeto padre con las propiedades que queremos que los demás elementos hereden y las llamaremos con `__proto__: nombreDelPadre`.
+
+Esto nos permite crear árboles de descendencia:
+
+```javascript
+let mammal = { hair: true };
+let human = { teeth: 32 };
+human.__proto__ = mammal;
+let gwen = {
+  __proto__: human, // Hacemos que gwen tenga también todas las propiedades de human
+  age: 19,
+};
+gwen.__proto__human;
+console.log(gwen.teeth); // Output 32
+console.log(gwen.hair); // Output true
+```
+
+Además, para los descendientes JS utiliza el **_shadowing_**, es decir, si modificamos una propiedad heredada dentro de un objeto, JS prima el valor concreto (el valor asignado en el objeto).
+
+```javascript
+let mammal = { hair: true };
+let human = { teeth: 32 };
+human.__proto__ = mammal;
+let gwen = {
+  __proto__: human, // Hacemos que gwen tenga también todas las propiedades de human
+  age: 19,
+};
+gwen.__proto__human;
+gwen.teeth = 30;
+console.log(gwen.teeth); // Output 30
+console.log(gwen.hair); // Output true
+```
+
+El método `.hasOwnProperty` nos permite preguntar al objeto si la propiedad le pertenece o es heredada.
+
+A pesar de todo, este mecanismo de \_\_proto\_\_ no se utiliza, ya que es algo más interno del sistema.
+
+> Para utilizar la herencia, utilizaremos `Object.create(objeto prototipo)`.
+
+```javascript
+let mammal = { hair : true }
+let human = Object.create(mammal)
+human.teeth: 32
+let gwen = Object.create(human)
+let gwen = { age : 19 }
+gwen.teeth = 30
+console.log(gwen.teeth) // Output 30
+console.log(gwen.hair) // Output true
+.
+```

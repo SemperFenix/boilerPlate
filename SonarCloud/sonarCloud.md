@@ -107,21 +107,21 @@ jobs:
 >        run: npm run test:prod
 > ```
 >
-> Nos obliga a actualizar el package.json con el script necesario para que se ejecute correctamente, si lo metemos dentro de "test", dejará la consola de producción en --watchAll. [^1]
+> Nos obliga a actualizar el package.json con el script necesario para que se ejecute correctamente, si lo metemos dentro de "test", dejará la consola de producción en --watchAll.[^1]
 >
 > ```json
 > "scripts": {
->    "test": "jest --watchAll --coverage",
->    "test:prod": "jest --coverage",
->    "prepare": "husky install"
->  },
+> "test": "jest --watchAll --coverage",
+> "test:prod": "jest --watchAll --coverage --watchAll=false",
+> "prepare": "husky install"
+> },
 > ```
 
 ---
 
 ---
 
-- Continuamos las instrucciones de SonarCloud y creamos el archivo con nombre `sonar-project.properties` y copiamos dentro el texto que nos da sonar y le añadimos esta línea:
+- Continuamos las instrucciones de SonarCloud y creamos en la raíz de nuestro proyecto (en VScode) el archivo con nombre `sonar-project.properties` y copiamos dentro el texto que nos da sonar y le añadimos esta línea:
 
 ```properties
 sonar.javascript.lcov.reportPaths=coverage/lcov.info
@@ -140,4 +140,4 @@ sonar.javascript.lcov.reportPaths=coverage/lcov.info
 ¿Por qué da este error la github action audit.yml? En la carpeta raíz sí que hay un archivo .gitignore
 ![Duda error github action](./images/Duda-githubAction.jpg)
 
-[^1]: también se podría utilizar el código --watchAll=false al final de la línea de test.
+[^1]: Si utilizamos el comando "test:prod": "jest --coverage" Es posible que Jest no cubra todos los test realizados.
