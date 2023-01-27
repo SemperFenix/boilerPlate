@@ -154,3 +154,177 @@ console.log(gwen.teeth) // Output 30
 console.log(gwen.hair) // Output true
 .
 ```
+
+> **Realmente no vamos a utilizar este tipo de asignaciones**, pero nos sirve para comprender cómo funcionan las clases dentro de JS.
+
+Todos los objetos tienen una propiedad \_\_proto\_\_ que apunta a un "objeto" padre. Para finzalizar esta cadena, existe un objeto _"tapón"_ (_Objeto Prototipo_) que su proto apunta a null.
+
+El _Objeto Prototipo_ tiene además otras propiedades (los métodos de instancia de los objetos).
+
+A este objeto podemos acceder y podríamos añadirle la propiedad que quisiéramos (`nombre.__proto__.propiedad = "valor"`), haciendo que a partir de ese momento todos los objetos contuvieran esa propiedad. Es una **mala práctica** y se denomina `Polución del prototipo` (_Polluting the Prototype_).
+
+> Los métodos de objeto no son más que propiedades del objeto prototipo cuyo valor es una función concreta.
+
+## Creando objetos
+
+### Método literal
+
+```javascript
+const obj = {}; // Crea un objeto vacío
+const objChild = Object.create(obj); // Crea un objeto que hereda todas las propiedades de obj
+```
+
+### Patrón factory
+
+Esto nos permite crear objetos con las condiciones iniciales, propiedades, etc. que nosotros queramos.
+
+```javascript
+function createFoo() {
+  // To do...
+  return {};
+}
+
+const arrowCreate = () => ({});
+```
+
+### Patrón de ejecución
+
+```javascript
+function bar() {
+  console.log('Soy bar)
+}
+
+Cuando una propiedad de un objeto apunta a una función, lo denominamos **método**
+
+// Uso: patrón método
+const obj = { tururu: bar, } // El nombre de la propiedad siempre va a ser un string
+
+obj.bar() // Cuando una propiedad de un objeto apunta a una función, lo denominamos método
+```
+
+### Patrón constructor
+
+Este patrón hace lo siguiente:
+
+1. Crea un objeto
+2. Lo usa como `this` dentro de la función
+3. Retorna el objeto
+4. Modifica el proto al objeto prototype de la función.
+
+```javascript
+function bar() {
+  // Lo que haga la función
+}
+
+new bar();
+```
+
+---
+
+---
+
+> Las clases son funciones a las que llamamos con la instrucción **`new`**
+
+---
+
+---
+
+## Usando el patrón constructor
+
+```javascript
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+const p3 = new Person("Luisa", 34);
+const p4 = new person("María", 28);
+
+console.log(p3, p4); // Person {name: Luisa, age: 34} Person {name: María, age: 28}
+```
+
+> Los objetos creados con un constructor tienen un parámetro que identifica la función a través de la cual se han construido.
+
+---
+
+Las funciones son objetos y, como tal, también apuntan a un _objeto prototype_ propio de la función (cada una apunta al suyo) y es **éste** quien apunta al **_Objeto Prototype_** (que apunta a null).
+
+> Los objetos creados a través de una función apuntan **al mismo objeto prototipo que la función**, **NO** al _Object Prototype_
+
+---
+
+> ## IMPORTANTE
+>
+> El elemento `Object` en JS es una función cuyo objeto prototipo es el _Object prototype_ al que apuntan todos los objetos.
+
+---
+
+---
+
+<div align ="center">
+Los objetos creados de esta manera tienen una propiedad llamada `constructor` que apunta a la función que lo ha creado.</div>
+
+---
+
+---
+
+### Creando los métodos
+
+Para crear métodos podemos aprovecharnos del objeto prototipo al que apunta la función. Para acceder a él lo llamamos con .prototype:
+
+```javascript
+Person.prototype.greetings = function () {};
+```
+
+De esta manera los métodos no se almacenan en cada objeto creado a través del constructor, sino que sólo se encuentran en el prototype y podemos acceder a ellos gracias a la herencia (pues todos los objetos creados de esta manera apuntan a ese objeto prototipo).
+
+## Cómo utilizar el método constructor en la práctica
+
+Para utilizar este método constructor utilizamos una herramienta que es:
+
+```javascript
+class Person {
+  // Se pueden declarar aquí las propiedades
+  name;
+  age;
+  #isLive; // La almohadilla indica que la propiedad es privada
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+    this.#isLive = true;
+  }
+
+  // Al usarlo dentro de "class", automáticamente crea la función en el objeto prototipo de la función Person
+
+  greetings() {
+    console.log(`Hola, soy ${this.name}`);
+  }
+}
+```
+
+> De cara a trabajar, cada clase irá en su **propio archivo** que exportaremos e importaremos donde lo necesitemos.
+
+> Las propiedades privadas sólo se pueden modificar desde un método de la clase.
+>
+> ## No tienen importancia en front-end
+
+Podemos hacer que una clase herede el constructor y métodos de otra clase:
+
+```javascript
+class Student extends Person {
+  course;
+  constructor(nae, age, course) {
+    super(name, age); // Le pasa a la clase padre los argumentos para su constructor
+    this.course = course;
+  }
+
+  greetings() {
+    super.greetings();
+    console.log(`Estudio ${this.course}.`);
+  }
+}
+
+const s1 = new Student("Juan", 25, "Angular");
+
+s1.greetings(); // Output: Hola, soy Ramón. Estudio Angular.
+```
