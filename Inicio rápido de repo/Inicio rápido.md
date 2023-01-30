@@ -1,49 +1,19 @@
 # BoilerPlate rápido de un repo
 
 1.  Crear carpeta con `git init`
+
 2.  Crear package.json con `npm init`
+
 3.  Añadir .gitignore, .editorconfig y readme.
+
 4.  Instalar todo lo necesario para el proyecto (en nuestro caso): `npm i -D husky eslint eslint-config-prettier jest @types/jest ts-jest jest-environment-jsdom @types/node @babel/plugin-transform-modules-commonjs typescript`
+
 5.  Ahora comenzamos la configuración:
 
     - Creamos el archivo .eslintrc.json con este contenido:
 
-<<<<<<< HEAD
       ```json
       {
-=======
-          2. `npx husky install`
-
-          - Creamos los huskys que necesitemos con `npx husky add .husky/nombre-del-husky
-
-          3. Editamos el archivo package.json añadiendo las instrucciones necesarias:
-
-    ```json
-    {
-      "name": "boiler",
-      "version": "1.0.0",
-      "description": "",
-      "main": "index.js",
-      "scripts": {
-        "start": "tsc -w",
-        "test": "jest --watchAll --coverage",
-        "test:prod": "jest --coverage",
-        "prepare": "husky install"
-      },
-      "keywords": [],
-      "author": "",
-      "license": "ISC",
-      "devDependencies": {
-        "@babel/plugin-transform-modules-commonjs": "^7.20.11",
-        "@types/jest": "^29.4.0",
-        "eslint": "^8.32.0",
-        "eslint-config-prettier": "^8.6.0",
-        "eslint-config-xo": "^0.43.1",
-        "husky": "^8.0.0",
-        "jest": "^29.4.0"
-      },
-      "babel": {
->>>>>>> c75af7d8ff6c61f80f3af86a6965136dec527457
         "env": {
           "browser": true,
           "es2021": true,
@@ -115,7 +85,6 @@
 
       - Creamos el archivo `tsconfig.json` con este contenido:
 
-<<<<<<< HEAD
       ```json
       {
         "compilerOptions": {
@@ -128,34 +97,6 @@
           // "disableSourceOfProjectReferenceRedirect": true,  /* Disable preferring source files instead of declaration files when referencing composite projects. */
           // "disableSolutionSearching": true,                 /* Opt a project out of multi-project reference checking when editing. */
           // "disableReferencedProjectLoad": true,             /* Reduce the number of projects loaded automatically by TypeScript. */
-=======
-    ```json
-        {
-      "env": {
-        "browser": true,
-        "es2021": true,
-        "node": true,
-        "jest": true
-      },
-      "extends": ["xo", "prettier"],
-      "overrides": [
-        {
-          "extends": ["xo-typescript"],
-          "files": ["*.ts", "*.tsx"]
-        }
-      ],
-      "parser": "@typescript-eslint/parser",
-      "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-      },
-      "plugins": ["@typescript-eslint"],
-
-      "rules": {}
-    }
-
-    ```
->>>>>>> c75af7d8ff6c61f80f3af86a6965136dec527457
 
           /* Language and Environment */
           "target": "ESNext" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
