@@ -48,23 +48,21 @@
 
         4. Editamos el archivo _eslintrc.json_ para que quede:
 
-        ```json
-          {
-            "env": {
-                "browser": true,
-                "es2021": true,
-                "node": true
-            },
-            "extends": "xo",
-            "overrides": [
-            ],
-            "parserOptions": {
-                "ecmaVersion": "latest"
-            },
-            "rules": {
-            }
-          }
-        ```
+    ```json
+    {
+      "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+      },
+      "extends": "xo",
+      "overrides": [],
+      "parserOptions": {
+        "ecmaVersion": "latest"
+      },
+      "rules": {}
+    }
+    ```
 
         5. Crear el archivo _jsconfig.json_ con este contenido:
 
