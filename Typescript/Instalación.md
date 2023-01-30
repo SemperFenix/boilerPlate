@@ -25,7 +25,7 @@ Para trabajar con él necesitamos integrar todas las herramientas con TypeScript
 4. Comprobamos en el archivo .eslintrc.json si nos ha añadido la línea `"parser": "@typescript-eslint/parser"`, quedando así:
    <div align="center">
 
-   ![Contenido .eslintrc.json](images/Opciones%20eslint%20para%20typescript.png)
+   ![Contenido .eslintrc.json](../images/Opciones%20eslint%20para%20typescript.png)
       </div>
 
 5. Creamos una línea en los scripts de package.json que sea `"start":"tsc -w"`:
@@ -46,7 +46,7 @@ Para trabajar con él necesitamos integrar todas las herramientas con TypeScript
 
    <div align="center">
 
-   ![Información de init de typescript](images/Install-typescript.png)
+   ![Información de init de typescript](../images/Install-typescript.png)
       </div>
 
    > En esta configuración vemos que los módulos instalados por defecto son los **commonjs**, pero no son los que nosotros vamos a utilizar, por lo que tenemos que modificarlos.
@@ -57,7 +57,7 @@ Para trabajar con él necesitamos integrar todas las herramientas con TypeScript
 
 |               **Estado inicial del archivo**               |     |                  **Estado final del archivo**                  |
 | :--------------------------------------------------------: | --- | :------------------------------------------------------------: |
-| ![Estado inicial del archivo](images/ModifyTypeScript.png) |     | ![Estado final del archivo](images/ModifyTypeScript-final.png) |
+| ![Estado inicial del archivo](../images/ModifyTypeScript.png) |     | ![Estado final del archivo](../images/ModifyTypeScript-final.png) |
 |                            ---                             | --- |                              ---                               |
 
 </div>
