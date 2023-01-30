@@ -51,20 +51,20 @@ Para trabajar con él necesitamos integrar todas las herramientas con TypeScript
 
    > En esta configuración vemos que los módulos instalados por defecto son los **commonjs**, pero no son los que nosotros vamos a utilizar, por lo que tenemos que modificarlos.
 
-7. En nuestro directorio raíz creamos las carpetas _src_ (de donde cogerá el archivo) y _dist_ (donde compilará el archivo nuevo).
-   Modificamos el archivo _tsconfig.json_ para cambiar el tipo de módulos y su configuración (de dónde cogerá el archivo, dónde lo dejará...):
+7. En nuestro directorio raíz creamos las carpetas _src_ (de donde cogerá el archivo) y _dist_ (donde compilará el archivo nuevo). Modificamos el archivo _tsconfig.json_ para cambiar el tipo de módulos y su configuración (de dónde cogerá el archivo, dónde lo dejará...):
 
-   <div align="center">
+<div align="center">
 
 |               **Estado inicial del archivo**               |     |                  **Estado final del archivo**                  |
 | :--------------------------------------------------------: | --- | :------------------------------------------------------------: |
 | ![Estado inicial del archivo](images/ModifyTypeScript.png) |     | ![Estado final del archivo](images/ModifyTypeScript-final.png) |
+|                            ---                             | --- |                              ---                               |
 
 </div>
 
-7. Creamos dentro de la carpeta _src_ un archivocon extensión **.ts** (por ejemplo: _sample.**ts**_)
+8. Creamos dentro de la carpeta _src_ un archivocon extensión **.ts** (por ejemplo: _sample.**ts**_)
 
-8. Ejecutamos el comando que hemos creado en el paso 4:
+9. Ejecutamos el comando que hemos creado en el paso 4:
 
    ```git
        npm start
@@ -72,36 +72,4 @@ Para trabajar con él necesitamos integrar todas las herramientas con TypeScript
 
    > Este comando, igual que el de sass o el de test, deja el terminal funcionando y compilando a JS (dentro de la carpeta dist), si queremos ejecutar cualquier comando de git, o bien paramos la consola (Ctrl + C) o bien abrimos otro nuevo terminal para ello.
 
-9. Ahora podemos programar en el archivo de TS y, como hemos dejado la terminal corriendo nos actualizará el archivo JS de la carpeta dist constantemente.
-
-## Usando TypeScript
-
-Typescrip nos añade el tipado a JS. Podemos utilizar un tipado estático o un tipado fuerte:
-
-```Typescript
-  // Tipado estático
-  let foo = 9
-  foo = "Pepe" // Lo podemos hacer, pero nos sugerirá que no
-
-  // Tipado fuerte mediante notación de tipos
-  let bar: string;
-  bar = 23 // Dará un error
-
-  // Podemos compaginar ambos métodos
-  let zoo: boolean = true // Algunos linters no lo permiten
-
- const s: number = 62
-
-  // Podemos mezclar más de un tipo
-
-  let boo: boolean | null
-
-  // Podemos obligar a un array a tener un tipo de dato concreto
-
-  const aData: Array<number> = [] // Esta forma no es tan buena práctica y algunos linters no la cogen.
-
-
-  const aData2: number[] = []
-
-  const aData3: (number | string)[] =
-```
+10. Ahora podemos programar en el archivo de TS y, como hemos dejado la terminal corriendo nos actualizará el archivo JS de la carpeta dist constantemente.
