@@ -127,17 +127,5 @@ jobs:
 sonar.javascript.lcov.reportPaths=coverage/lcov.info
 ```
 
----
-
----
-
-## Dudas
-
----
-
----
-
-¿Por qué da este error la github action audit.yml? En la carpeta raíz sí que hay un archivo .gitignore
-![Duda error github action](./images/Duda-githubAction.jpg)
 
 [^1]: Si utilizamos el comando "test:prod": "jest --coverage" Es posible que Jest no cubra todos los test realizados.
