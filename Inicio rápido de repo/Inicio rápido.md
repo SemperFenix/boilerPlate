@@ -21,7 +21,7 @@
       "description": "",
       "main": "index.js",
       "scripts": {
-        "start": "tsc -w", // Necesario si no estmaos trabajando con vite
+        "start": "tsc -w",
         "test": "jest --watchAll --coverage",
         "test:prod": "jest --coverage",
         "prepare": "husky install"
@@ -51,7 +51,7 @@
           4. Editamos el archivo _eslintrc.json_ para que quede:
 
     ```json
-    {
+        {
       "env": {
         "browser": true,
         "es2021": true,
@@ -59,12 +59,12 @@
         "jest": true
       },
       "extends": ["xo", "prettier"],
-      // "overrides": [
-      //   {
-      //     "extends": ["xo-typescript"],
-      //     "files": ["*.ts", "*.tsx"]
-      //   }
-      // ],
+      "overrides": [
+        {
+          "extends": ["xo-typescript"],
+          "files": ["*.ts", "*.tsx"]
+        }
+      ],
       "parser": "@typescript-eslint/parser",
       "parserOptions": {
         "ecmaVersion": "latest",
@@ -74,6 +74,7 @@
 
       "rules": {}
     }
+
     ```
 
         5. Crear el archivo _jsconfig.json_ con este contenido: [^1]
