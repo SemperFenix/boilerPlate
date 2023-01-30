@@ -2,8 +2,9 @@
 
 1.  Crear carpeta con `git init`
 2.  Crear package.json con `npm init`
-3.  Instalar todo lo necesario para el proyecto (en nuestro caso): `npm i -D husky eslint eslint-config-prettier jest @types/jest @babel/plign-transform-modules-commonjs typescript`
-4.  Ahora comenzamos la configuración:
+3.  Añadir .gitignore, .editorconfig y readme.
+4.  Instalar todo lo necesario para el proyecto (en nuestro caso): `npm i -D husky eslint eslint-config-prettier jest @types/jest @babel/plign-transform-modules-commonjs typescript`
+5.  Ahora comenzamos la configuración:
 
         1. `npx eslint --init`
 
@@ -20,6 +21,7 @@
       "description": "",
       "main": "index.js",
       "scripts": {
+        "start": "tsc -w", // Necesario si no estmaos trabajando con vite
         "test": "jest --watchAll --coverage",
         "test:prod": "jest --coverage",
         "prepare": "husky install"
