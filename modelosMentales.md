@@ -328,3 +328,5 @@ const s1 = new Student("Juan", 25, "Angular");
 
 s1.greetings(); // Output: Hola, soy Ramón. Estudio Angular.
 ```
+
+> No se puede extender más de una clase.

@@ -73,3 +73,5 @@ Para trabajar con él necesitamos integrar todas las herramientas con TypeScript
    > Este comando, igual que el de sass o el de test, deja el terminal funcionando y compilando a JS (dentro de la carpeta dist), si queremos ejecutar cualquier comando de git, o bien paramos la consola (Ctrl + C) o bien abrimos otro nuevo terminal para ello.
 
 10. Ahora podemos programar en el archivo de TS y, como hemos dejado la terminal corriendo nos actualizará el archivo JS de la carpeta dist constantemente.
+
+## Configurando el entorno de test

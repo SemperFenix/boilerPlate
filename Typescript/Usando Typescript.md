@@ -29,3 +29,92 @@ Typescrip nos añade el tipado a JS. Podemos utilizar un tipado estático o un t
 
   const aData3: (number | string)[] =
 ```
+
+<!-- Vamos a convertir un archivo de JS a un archivo de TS:
+
+**Archivo JS**
+
+```javascript
+class Person {
+  // Se pueden declarar aquí las propiedades
+  name;
+  age;
+  #isLive; // La almohadilla indica que la propiedad es privada
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+    this.#isLive = true;
+  }
+
+  // Al usarlo dentro de "class", automáticamente crea la función en el objeto prototipo de la función Person
+
+  greetings() {
+    console.log(`Hola, soy ${this.name}`);
+  }
+}
+```
+
+
+```typescript
+
+class Person {
+    name;
+  age;
+  private isLive;
+  constructor(public name: string, age: number) {
+    this.name = name;
+    this.age = age;
+    this.#isLive = true;
+  }
+
+  // Al usarlo dentro de "class", automáticamente crea la función en el objeto prototipo de la función Person
+
+  greetings() {
+    console.log(`Hola, soy ${this.name}`);
+  }
+}
+
+class Student extends PersonClass {
+
+
+  constructor (name:string, age:number, course: string){
+    super
+  }
+} -->
+
+En Typescript también podemos utilizar interfaces. Son variaciones de los types. Es una especie de molde con el que comparar los objetos que se crean (_todos los objetos de este **tipo** tienen que tener las propiedades..._). Hay gente que lo define como un _contrato_ (quienes asuman este interfaz se comprometen a...), si se incumple, TS nos mostrará advertencias:
+
+```typescript
+
+interface Live = {
+  name: string
+  specie: string
+}
+
+class Person implements Live {
+  // Si no ponemos esto, nos dará un aviso
+  private isLive: boolean
+  species:string
+  constructor(public name: string, age: number) {
+    this.isLive = true
+    this.species = 'human'
+  }
+}
+```
+
+> Los interfaces van asociados a items, que son objetos generados a través de una clase.
+
+Los interfaces nos permiten hacer **_duck typing_**, es decir, si algo parece un pato y se mueve como un pato, es un pato (cambiar pato por tipo).
+
+Además, podemos incorporar varios interfaces dentro de una clase.
+
+```typescript
+class Dog implements Live {
+  constructor(public name: string, public species: string) {}
+}
+
+const x: Live = { name: "Pedro", species: "perro" };
+const z: Person = new Person();
+```
+
+Además, en lugar de _interfaces_ podemos usar _tipos_ (`type`), que funcionarán aproximadamente igual. De momento, consideramos que son lo mismo.
