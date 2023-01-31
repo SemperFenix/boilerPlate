@@ -123,3 +123,54 @@ const z: Person = new Dog(); // Dará error
 ```
 
 Además, en lugar de _interfaces_ podemos usar _tipos_ (`type`), que funcionarán aproximadamente igual. De momento, consideramos que son lo mismo.
+
+> Los interfaces sólo transmiten el aspecto del objeto (propiedades), las clases extendidas, sin embargo, transmiten también los métodos implementados en la clase padre.
+
+Si queremos que no pueda crearse un objeto de la clase padre comenzaremos por `abstract`. Si una clase abstracta no tiene métodos, se convierte en un interfaz.
+
+```typescript
+export abstract class Character ...
+```
+
+## Mock de los datos
+
+Dentro de la carpeta src creamos la carpeta `mock`. Esto lo utilizaremos porque no tenemos datos reales que recibir, por lo que utilizaremos los de esta carpeta para testear nuestro trabajo.
+
+Dentro de esta carpeta nos creamos un archivo `data.ts`.
+
+```typescript
+// MOCK_TASKS => Esta forma se utilizaba antes de la implementación de const para señalizar var que no debían cambiar.
+export const mockTasks = [
+  { id: 1, title: "Algo", responsible: "Pepe", isComplete: false },
+  { id: 2, title: "Otro Algo", responsible: "Luisa", isComplete: false },
+];
+
+export const mockCharacters: Character[] = [
+  new King("Joffrey", "Baratheon", 15, 1),
+  new Fighter("Jaime", "Lannister", 38, "Sword", 8),
+  ,
+];
+
+//No puedo crear dentro del array un item que referencia a otro que aún no ha sido creado, por lo que lo hacemos desde fuera.
+mock.Characters.push(
+  new Counselor("Tyrion", "Lannister", 25, mockCharacters[1]),
+  new Squire("Bronn", "None", 35, mockCharacters[1], 3)
+);
+```
+
+Creamos una carpeta `models` donde guardamos nuestros archivos a testear y creamos un archivo donde creamos un tipo para poder tipar el array del archivo mock.
+
+```typescript
+export type TaskStructure = {
+  id: number;
+  title: string;
+  responsible: string;
+  isCompleted: boolean;
+};
+```
+
+Esto nos permite tipar el array creado en el archivo `mock`, restringiendo y garantiando que los elementos son exactamente como nosotros queremos.
+
+```typescript
+export const mockTasks: TaskStructure[] =...
+```
