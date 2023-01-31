@@ -38,7 +38,7 @@
       }
       ```
 
-      - Modificamos el package.json:
+    - Modificamos el package.json:
 
       ```json
       {
@@ -83,7 +83,7 @@
       }
       ```
 
-      - Creamos el archivo `tsconfig.json` con este contenido:
+    - Creamos el archivo `tsconfig.json` con este contenido:
 
       ```json
       {
@@ -191,7 +191,7 @@
       }
       ```
 
-      - Añadimos el archivo `jest.configure.js` con este contenido:
+    - Añadimos el archivo `jest.configure.js` con este contenido:
 
       ```javascript
       /** @type {import('ts-jest').JestConfigWithTsJest} */
@@ -203,7 +203,7 @@
       };
       ```
 
-      - Creamos la carpeta `.github` y dentro la carpeta `workflows`. Creamos dentro los archivos `Audit.yml` y `sonar.yml` con estos contenidos:
+    - Creamos la carpeta `.github` y dentro la carpeta `workflows`. Creamos dentro los archivos `Audit.yml` y `sonar.yml` con estos contenidos:
 
       ```yml
       name: Audit # Nombre del fichero .yml
@@ -267,6 +267,29 @@
                 SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       ```
 
+    - Creamos el archivo `sonar-project.properties` en la carpeta raíz con el contenido que nos da la web de sonar en `Administrate => Analysis Method => GitHub Actions (follow the tutorial) => Create or update a build file (Others - JS...)`. El contenido del archivo será parecido a este:
+
+      ```properties
+      sonar.projectKey=SemperFenix_boilerPlate
+      sonar.organization=semperfenix
+
+      # This is the name and version displayed in the SonarCloud UI.
+      #sonar.projectName=202301-W3CH1-ivan-duran
+      #sonar.projectVersion=1.0
+
+      # Path is relative to the sonar-project.properties file. Replace "\" by "/" on Windows.
+      #sonar.sources=.
+
+      # Encoding of the source code. Default is default system encoding
+      #sonar.sourceEncoding=UTF-8
+      ```
+
+    - Para evitar que Sonar busque coverage de los archivos de test incluimos en ese mismo archivo esta línea:
+      ```properties
+      sonar.coverage.exclusions = **/*.test.ts, **/*.test.js
+      ```
+      [^1]
+
 ## Huskys
 
 Si queremos instalar huskys:
@@ -277,40 +300,42 @@ Si queremos instalar huskys:
 
 - commit-msg:
 
-```shell
-  #!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+  ```shell
+    #!/bin/sh
+  . "$(dirname "$0")/_/husky.sh"
 
-while read line; do
-    # Skip comments
-    if [ "${line:0:1}" == "#" ]; then
-        continue
-    fi
-    if [ ${#line} -ge 72 ] || [ ${#line} -le 10 ]; then
-        echo -e "\033[0;31mThe length of the message has to be between 10 and 72 characters."
-        exit 1
-    fi
-done < "${1}"
+  while read line; do
+      # Skip comments
+      if [ "${line:0:1}" == "#" ]; then
+          continue
+      fi
+      if [ ${#line} -ge 72 ] || [ ${#line} -le 10 ]; then
+          echo -e "\033[0;31mThe length of the message has to be between 10 and 72 characters."
+          exit 1
+      fi
+  done < "${1}"
 
-exit 0
-```
+  exit 0
+  ```
 
 - pre-push
 
-```shell
-  #!/bin/sh
-  . "$(dirname "$0")/_/husky.sh"
+  ```shell
+    #!/bin/sh
+    . "$(dirname "$0")/_/husky.sh"
 
-  local_branch_name="$(git rev-parse --abbrev-ref HEAD)"
+    local_branch_name="$(git rev-parse --abbrev-ref HEAD)"
 
-  valid_branch_regex='^((hotfix|bugfix|feature)\/[a-zA-Z0-9\-]+)$'
+    valid_branch_regex='^((hotfix|bugfix|feature)\/[a-zA-Z0-9\-]+)$'
 
-  message="Please check your branch name."
+    message="Please check your branch name."
 
-  if [[ ! $local_branch_name =~ $valid_branch_regex ]]; then
-    echo -e "\033[0;31m$message"
-    exit 1
-  fi
+    if [[ ! $local_branch_name =~ $valid_branch_regex ]]; then
+      echo -e "\033[0;31m$message"
+      exit 1
+    fi
 
-  exit 0
-```
+    exit 0
+  ```
+
+[^1]: Para más información sobre cómo utilizar los \* y otros caracteres comodín, utilizar [esta referencia](https://docs.sonarcloud.io/advanced-setup/analysis-scope/#restrict-the-scope-of-coverage-detection).
