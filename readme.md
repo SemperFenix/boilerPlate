@@ -269,16 +269,19 @@
 
     - Seguimos las instrucciones para añadir en gitHub el secret correspondiente al TOKEN.
 
-    - Creamos el archivo `sonar-project.properties` en la carpeta raíz con el contenido que nos da la web de sonar en `Administrate => Analysis Method => GitHub Actions (follow the tutorial) => Create or update a build file (Others - JS...)`. El contenido del archivo será parecido a este (cambiando el valor de `projectKey` y de `organization`):
+    - Creamos el archivo `sonar-project.properties` en la carpeta raíz con el contenido que nos da la web de sonar en `Administrate => Analysis Method => GitHub Actions (follow the tutorial) => Create or update a build file (Others - JS...)`. El contenido del archivo será **_parecido_** a este (cambiando el valor de `projectKey` y de `organization`):
 
       ```properties
       sonar.projectKey=SemperFenix_boilerPlate
       sonar.organization=semperfenix
+      sonar.javascript.lcov.reportPaths=coverage/lcov.info
+      sonar.coverage.exclusions = **/*.test.ts, **/*.test.js
+
 
       # This is the name and version displayed in the SonarCloud UI.
       #sonar.projectName=202301-W3CH1-ivan-duran
       #sonar.projectVersion=1.0
-
+      
       # Path is relative to the sonar-project.properties file. Replace "\" by "/" on Windows.
       #sonar.sources=.
 
