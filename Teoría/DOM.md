@@ -8,6 +8,7 @@ Podemos acceder a estas propiedades desde un archivo Javascript utilizando `docu
 2. [Modificar elementos](#id2)
 3. [Linkeando archivos al HTML](#id3)
 4. [Componentes](#id4)
+5. [Estructura de ficheros](#id5)
 
 <div id="id1">
 
@@ -248,5 +249,34 @@ export class Header extends Component {
 
 new Header("");
 ```
+
+</div>
+
+<div id="id5>
+
+## Estructura de ficheros
+
+- Raíz de proyecto: eslintrc.json, .editorconfig, .gitignore, tsconfig.json, package.json, jest.config.js, readme.md, index.html (que dentro tendrá un `<script type="module" src="./src/index.ts">` y un `<link type="styles" src="./css/style.css">`)- En la raíz de `src`, sólo el `index.ts`
+
+- Dentro de `src` creamos las carpetas: `components`, `models`, `mocks`
+
+  - Components, una carpeta por cada componente HTML que vayamos a tener (.ts y test)
+  - Mocks, un archivo con el array de datos
+  - Models, un fichero para cada clase y un fichero de test para cada clase
+
+- Para CSS:
+
+  - Creamos una carpeta llamada `public`. Lo que haya dentro de esta carpeta se copiará directamente en `dist`.
+  - Para hacer CSS para un componente (o para el `index.ts`), dentro de su carpeta creamos su archivo CSS y comenzamos el fichero importando ese estilo:
+
+  ```typescript
+  import "./style.css"; // El nombre es el nombre del archivo que queramos importar, si fuera de sass, sería ./style.scss o header.scss
+  ```
+
+  - Si queremos utilizar SASS, crearemos un archivo scss en vez de css, Vite se encargará de convertirlo en css y compilarlo.
+
+  > Cuando ejecutemos `npm run build` crearaá en la carpeta dist todos los archivos necesarios.
+
+> Vite además, mimifica los archivos (les quita todos los espacios, saltos de carro, variables, etc.) para reducir el peso de los archivos.
 
 </div>
