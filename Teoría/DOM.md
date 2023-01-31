@@ -99,6 +99,14 @@ element2.outerHTML = `ESTO ESTÁ EN OUTER`;
 element1.insertAdjacentHTML(); // Nos preguntará por la posición donde queremos colocar el contenido, por lo que sustituye a los otros.
 ```
 
+### classList
+
+Para modificar las clases de un elemento HTML utilizamos el método classList, tiene varias opciones: toggle, add, remove, replace
+
+```typescript
+element1.classList.toggle("on");
+```
+
 ## Creando un sitio dinámico
 
 Hasta ahora, todo lo visto eran webs estáticas, si queremos que el usuario interaccione con la página, ésta debe ser dinámica.
