@@ -6,7 +6,7 @@
 
 3.  Añadir .gitignore, .editorconfig y readme.
 
-4.  Instalar todo lo necesario para el proyecto (en nuestro caso): `npm i -D husky eslint eslint-config-prettier jest @types/jest ts-jest jest-environment-jsdom @types/node @babel/plugin-transform-modules-commonjs typescript`
+4.  Instalar todo lo necesario para el proyecto (en nuestro caso): `npm i -D husky eslint eslint-config-prettier jest @types/jest ts-jest jest-environment-jsdom @types/node typescript vite`
 
 5.  Ahora comenzamos la configuración:
 
@@ -21,12 +21,6 @@
           "jest": true
         },
         "extends": ["xo", "prettier"],
-        "overrides": [
-          {
-            "extends": ["xo-typescript"],
-            "files": ["*.ts", "*.tsx"]
-          }
-        ],
         "parser": "@typescript-eslint/parser",
         "parserOptions": {
           "ecmaVersion": "latest",
@@ -46,18 +40,21 @@
         "version": "1.0.0",
         "description": "",
         "main": "index.js",
+        "type": "module",
         "scripts": {
           "start": "tsc -w",
           "test": "jest --watchAll --coverage",
-          "test:prod": "jest --coverage",
+          "test:prod": "jest --watchAll --coverage --watchAll=false",
           "prepare": "husky install",
-          "sass": "sass sass:css --watch"
+          "sass": "sass sass:css --watch",
+          "dev": "vite",
+          "build": "tsc && vite build",
+          "preview": "vite preview"
         },
         "keywords": [],
         "author": "",
         "license": "ISC",
         "devDependencies": {
-          "@babel/plugin-transform-modules-commonjs": "^7.20.11",
           "@types/jest": "^29.4.0",
           "@types/node": "^18.11.18",
           "@typescript-eslint/eslint-plugin": "^5.49.0",
@@ -71,14 +68,11 @@
           "jest-environment-jsdom": "^29.4.1",
           "sass": "^1.57.1",
           "ts-jest": "^29.0.5",
-          "typescript": "^4.9.4"
+          "typescript": "^4.9.4",
+          "vite": "^4.0.0"
         },
-        "babel": {
-          "env": {
-            "test": {
-              "plugins": ["@babel/plugin-transform-modules-commonjs"]
-            }
-          }
+        "prettier": {
+          "singleQuote": true
         }
       }
       ```
@@ -199,7 +193,7 @@
         preset: "ts-jest",
         testEnvironment: "jsdom",
         testPathIgnorePatterns: ["dist"],
-        resolver: "jest-ts-webcompat-resolver",
+        // TEMP resolver: "jest-ts-webcompat-resolver",
       };
       ```
 
