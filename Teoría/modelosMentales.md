@@ -313,7 +313,7 @@ Podemos hacer que una clase herede el constructor y métodos de otra clase:
 ```javascript
 class Student extends Person {
   course;
-  constructor(nae, age, course) {
+  constructor(name, age, course) {
     super(name, age); // Le pasa a la clase padre los argumentos para su constructor
     this.course = course;
   }

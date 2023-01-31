@@ -89,6 +89,10 @@ En Typescript también podemos utilizar interfaces. Son variaciones de los types
 interface Live = {
   name: string
   specie: string
+
+  greetings () => {
+    return 'Hola'
+  }
 }
 
 class Person implements Live {
@@ -114,7 +118,8 @@ class Dog implements Live {
 }
 
 const x: Live = { name: "Pedro", species: "perro" };
-const z: Person = new Person();
+const y: Person = new Person();
+const z: Person = new Dog(); // Dará error
 ```
 
 Además, en lugar de _interfaces_ podemos usar _tipos_ (`type`), que funcionarán aproximadamente igual. De momento, consideramos que son lo mismo.
