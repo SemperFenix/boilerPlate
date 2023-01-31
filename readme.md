@@ -274,11 +274,14 @@
       ```properties
       sonar.projectKey=SemperFenix_boilerPlate
       sonar.organization=semperfenix
+      sonar.javascript.lcov.reportPaths=coverage/lcov.info
+      sonar.coverage.exclusions = **/*.test.ts, **/*.test.js
+
 
       # This is the name and version displayed in the SonarCloud UI.
       #sonar.projectName=202301-W3CH1-ivan-duran
       #sonar.projectVersion=1.0
-
+      
       # Path is relative to the sonar-project.properties file. Replace "\" by "/" on Windows.
       #sonar.sources=.
 
