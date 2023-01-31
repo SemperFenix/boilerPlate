@@ -277,6 +277,10 @@ new Header("");
 
   > Cuando ejecutemos `npm run build` crearaá en la carpeta dist todos los archivos necesarios.
 
+  ## FAVICON
+
+  > El archivo del favicon lo pondremos directamente en la carpeta `public` y no hace falta añadirlo al index.html.
+
 > Vite además, mimifica los archivos (les quita todos los espacios, saltos de carro, variables, etc.) para reducir el peso de los archivos.
 
 </div>
