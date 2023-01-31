@@ -252,7 +252,7 @@ new Header("");
 
 </div>
 
-<div id="id5>
+<div id="id5">
 
 ## Estructura de ficheros
 
