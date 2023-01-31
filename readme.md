@@ -275,7 +275,7 @@
       sonar.projectKey=SemperFenix_boilerPlate
       sonar.organization=semperfenix
       sonar.javascript.lcov.reportPaths=coverage/lcov.info
-      sonar.coverage.exclusions = **/*.test.ts, **/*.test.js
+      sonar.coverage.exclusions = ./src/models/*.test.*
 
 
       # This is the name and version displayed in the SonarCloud UI.
