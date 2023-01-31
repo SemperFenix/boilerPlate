@@ -10,7 +10,7 @@
 
 5.  Añadir .gitignore, .editorconfig y readme.
 
-6.  Instalar todo lo necesario para el proyecto (en nuestro caso): `npm i -D husky eslint eslint-config-prettier jest @types/jest ts-jest jest-environment-jsdom @types/node typescript vite`
+6.  Instalar todo lo necesario para el proyecto (en nuestro caso): `npm i -D husky eslint eslint-config-prettier jest @types/jest ts-jest jest-environment-jsdom @types/node typescript vite sass`
 
 7.  Ahora comenzamos la configuración:
 
