@@ -109,3 +109,80 @@ const handlerClick = () => {
 
 button.addEventListener("click", handlerClick);
 ```
+
+## Linkando archivos al HTML
+
+Creamos nuestra plantilla en HTML, podemos linkear archivos TS:
+
+```HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="module" src="./src/day2.ts"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"> </div>
+
+</body>
+</html>
+```
+
+```typescript
+console.log("dia2");
+const root = document.querySelector("#root") as HTMLDiv; // Esto puede ser más genérico, por ejemplo con HTMLElement, sirve para asegurarle al código que este elemento no va a ser null
+const headerTemplate = `
+  <header class="header">
+      <h1>Learning Dom</h1>
+      <p>Segundo día</p>
+    </header>
+`;
+
+// El método insertAdjacent permite introducir elementos, HTML o sólo texto
+// Revisar la documentación para ver sus argumentos
+root.insertAdjacentHTML("afterbegin", headerTemplate);
+
+// Como mockTasks es un array de Task, item será de tipo Task
+let tasksTemplate = '<div class="lista">';
+mockTasks.forEach((item) => {
+  tasksTemplate += `<p>
+id:${item.id}, title: ${item.title}, responsible: ${item.responsible}, isCompleted:${item.isCompleted}
+<button data-id='${item.id}'>🗑 ${item.id}</button>
+</p>
+</div>`; // El atributo data-id es un atributo que creamos para poder referirnos al botón desde JS, ya que los id que comienzan por número dan problema desde el punto de vista semántico
+});
+
+root.insertAdjacentHTML("beforeend", tasksTemplate);
+
+const handlerDelete = (event: Event) => {
+  const element = event.target as HTMLButtonElement;
+  const id = Number(element.dataset.id); // Con esto estamos haciendo referencia al campo data-id del botón. Si ponemos el nombre de la variable entre {} cogen el dato por desestructuración, no es necesario, pero nos da el clg más sencillo de leer.
+  console.log("click"); // Al tener el id, ya no necesitaríamos el console.dir()
+  // Si queremos hacer un console.log de un elemento HTML usamos console.dir
+  console.dir(id); // Esto nos mostrará en la consola la información del Elemento clickado
+
+  const data = mockTasks.filter((item) => item.id !== id); // Convertimos id en number al declararlo porque todo elemento que viene de HTML es un string
+  console.log(data);
+  document.querySelector("lista")!.innerHTML = "";
+  renderList(data); // Llamamos a la función para que "actualice" la página con los nuevos valores que han cambiado
+};
+
+const buttons = document.querySelectorAll("button"); // Devuelve una nodeList, por eso el nombre es button-S
+buttons.forEach((item) => item.addEventListener("click", handlerDelete)); // Esto nos añade un eventListener para todos los botones del archivo
+console.log(data); // Nos devuelve un array de datos
+// El nombre de los handler podemos llamarlos de dos maneras: 1º siguiendo el tipo de evento que disparan (click, hover...), 2º refiriendo a la función que tienen (delete, send...)
+```
+
+Podemos convertir todo esto en una función:
+
+```Typescript
+const renderList = (data: TaskStructure []) => {
+  let taskTemplate = ''
+  data.forEach((item)...) // De esta manera parametrizamos la entrada de datos
+}
+```
+
+> Realmente, no vamos a organizar nuestro código de esta manera, sino a separarlo en grupos con los que será mucho más cómodos con los que trabajar (**componentes**). Todos los frameworks de front-end trabajan usando componentes, por lo que comprender estas estructuras básicas será fundamental.
