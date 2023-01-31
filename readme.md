@@ -294,6 +294,10 @@
 
       [^1]
 
+> ## CUIDADO
+>
+> Recuerda volver a guardar todos los archivos después de copiarlos para que prettier los modifique de acuerdo a nuestras normas; si no, al hacer pull request la github action de **Audit** puede fallar para archivos como _jest.config.js_.
+
 ## Huskys
 
 Si queremos instalar huskys:

@@ -4,6 +4,13 @@ Document Object Model. El DOM no es más que un Objeto de javascript lleno de pr
 
 Podemos acceder a estas propiedades desde un archivo Javascript utilizando `document.`.
 
+1. [Localizar elementos](#id1)
+2. [Modificar elementos](#id2)
+3. [Linkeando archivos al HTML](#id3)
+4. [Componentes](#id4)
+
+<div id="id1">
+
 ## Localizar elementos
 
 Para acceder a los elementos utilizaremos `document.querySelectorAll()`, que nos devuelve un NodeList, que es un elemento parecido a un array pero sin muchas propiedades de éstos. Esto nos sirve para
@@ -25,6 +32,10 @@ elements.forEach(); // Al ser un NodeList, podemos aplicarle algunos de los mét
 const elements = [...document.querySelectorAll(".red")]; // Devuelve un array normal con los elementos de clase .red
 Array.from(document.querySelectorAll(".red")); // Esto sería equivalente
 ```
+
+</div>
+
+<div id="id2">
 
 ## Modificar elementos
 
@@ -110,6 +121,8 @@ const handlerClick = () => {
 button.addEventListener("click", handlerClick);
 ```
 
+<div id="id3">
+
 ## Linkando archivos al HTML
 
 Creamos nuestra plantilla en HTML, podemos linkear archivos TS:
@@ -186,3 +199,54 @@ const renderList = (data: TaskStructure []) => {
 ```
 
 > Realmente, no vamos a organizar nuestro código de esta manera, sino a separarlo en grupos con los que será mucho más cómodos con los que trabajar (**componentes**). Todos los frameworks de front-end trabajan usando componentes, por lo que comprender estas estructuras básicas será fundamental.
+
+</div>
+
+<div id="id4">
+
+## Componentes
+
+Nuestros componentes van a ser clases que podremos exportar para crear los distintos elementos del HTML.
+
+```typescript
+// Fichero 1
+export abstract class Component {
+  selector!: string; // Usamos el operador ! para asegurar que los valores no van a ser null
+  element!: HTMLElement;
+  template!: string; // Declaramos estos parámetros para que los coja el método render, pero no necesitamos constructor
+  // constructor() {
+  //   render(); // Este método se ejecutará por defecto al crear cualquier objeto de esta clase (o que la tenga heredada)
+  // }
+
+  render() {
+    // Si lo separamos, habrá que llamarlo cuando queramos utilizarlo.
+    const element = document.querySelector(this.selector) as HTMLElement;
+    element.insertAdjacentHTML("afterbegin", this.template);
+  }
+}
+
+// Fichero 2
+
+export class Header extends Component {
+  constructor(public selector: string) {
+    super(); // En este caso no le pasamos los parámetros porque la clase padre no tiene un constructor que vaya a utilizar estos parámetros
+    this.template = this.createTemplate();
+    this.render();
+  }
+
+  private createTemplate() {
+    // La hacemos de uso interno con la etiqueta private
+    return `
+    <header class ="header">
+      <h1></h1>
+      <p></p>
+    </header>`;
+  }
+}
+
+// Fichero 3
+
+new Header("");
+```
+
+</div>
