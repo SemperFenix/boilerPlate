@@ -261,7 +261,11 @@
                 SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       ```
 
-    - Creamos el archivo `sonar-project.properties` en la carpeta raíz con el contenido que nos da la web de sonar en `Administrate => Analysis Method => GitHub Actions (follow the tutorial) => Create or update a build file (Others - JS...)`. El contenido del archivo será parecido a este:
+    - Dentro del proyecto de sonar, vamos a `Administration => Analysis method` y desactivamos el check de análisis automático. Elegimos debajo `GitHub Actions` pinchando en el link de "Follow the tutorial" que hay justo debajo.
+
+    - Seguimos las instrucciones para añadir en gitHub el secret correspondiente al TOKEN.
+
+    - Creamos el archivo `sonar-project.properties` en la carpeta raíz con el contenido que nos da la web de sonar en `Administrate => Analysis Method => GitHub Actions (follow the tutorial) => Create or update a build file (Others - JS...)`. El contenido del archivo será parecido a este (cambiando el valor de `projectKey` y de `organization`):
 
       ```properties
       sonar.projectKey=SemperFenix_boilerPlate
