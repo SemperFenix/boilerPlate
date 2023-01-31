@@ -1,14 +1,18 @@
 # BoilerPlate rápido de un repo
 
-1.  Crear carpeta con `git init`
+1.  Crear carpeta vacía en el PC.
 
-2.  Crear package.json con `npm init`
+2.  Abrirla con VSCode.
 
-3.  Añadir .gitignore, .editorconfig y readme.
+3.  Inicializar el repo con `git init`.
 
-4.  Instalar todo lo necesario para el proyecto (en nuestro caso): `npm i -D husky eslint eslint-config-prettier jest @types/jest ts-jest jest-environment-jsdom @types/node typescript vite`
+4.  Crear package.json con `npm init`.
 
-5.  Ahora comenzamos la configuración:
+5.  Añadir .gitignore, .editorconfig y readme.
+
+6.  Instalar todo lo necesario para el proyecto (en nuestro caso): `npm i -D husky eslint eslint-config-prettier jest @types/jest ts-jest jest-environment-jsdom @types/node typescript vite`
+
+7.  Ahora comenzamos la configuración:
 
     - Creamos el archivo .eslintrc.json con este contenido:
 
@@ -283,9 +287,11 @@
       ```
 
     - Para evitar que Sonar busque coverage de los archivos de test incluimos en ese mismo archivo esta línea:
+
       ```properties
       sonar.coverage.exclusions = **/*.test.ts, **/*.test.js
       ```
+
       [^1]
 
 ## Huskys
