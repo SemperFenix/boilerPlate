@@ -70,6 +70,7 @@
           "eslint-config-xo": "^0.43.1",
           "eslint-config-xo-typescript": "^0.55.1",
           "husky": "^8.0.3",
+          "identity-obj-proxy": "^3.0.0",
           "jest": "^29.4.1",
           "jest-environment-jsdom": "^29.4.1",
           "sass": "^1.57.1",
