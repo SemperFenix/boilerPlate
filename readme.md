@@ -10,7 +10,7 @@
 
 5.  Añadir .gitignore, .editorconfig y readme.
 
-6.  Instalar todo lo necesario para el proyecto (en nuestro caso): `npm i -D husky eslint eslint-config-prettier jest @types/jest ts-jest jest-environment-jsdom @types/node typescript vite sass`
+6.  Instalar todo lo necesario para el proyecto (en nuestro caso): `npm i -D husky eslint eslint-config-prettier jest @types/jest ts-jest jest-environment-jsdom @types/node typescript vite sass @testing-library/dom @testing-library/jest-dom`
 
 7.  Ahora comenzamos la configuración:
 
@@ -59,6 +59,8 @@
         "author": "",
         "license": "ISC",
         "devDependencies": {
+          "@testing-library/dom": "^8.20.0",
+          "@testing-library/jest-dom": "^5.16.5",
           "@types/jest": "^29.4.0",
           "@types/node": "^18.11.18",
           "@typescript-eslint/eslint-plugin": "^5.49.0",
@@ -275,13 +277,17 @@
       sonar.projectKey=SemperFenix_boilerPlate
       sonar.organization=semperfenix
       sonar.javascript.lcov.reportPaths=coverage/lcov.info
-      sonar.coverage.exclusions = ./src/models/*.test.*
+      sonar.coverage.exclusions = /src/models/*.test.*
+
+      # Los asteriscos dependerán de dónde estén los archivos de test, ** sirve para indicar 'Cualquier nombre de carpeta' y * sirve para indicar 'Cualquier palabra en el nombre del archivo'.
+
+      # En este caso podríamos haber escrito **/**/*.test.*
 
 
       # This is the name and version displayed in the SonarCloud UI.
       #sonar.projectName=202301-W3CH1-ivan-duran
       #sonar.projectVersion=1.0
-      
+
       # Path is relative to the sonar-project.properties file. Replace "\" by "/" on Windows.
       #sonar.sources=.
 

@@ -65,7 +65,7 @@ jobs:
 
 - Pinchamos en create or update a build file y seleccionamos la opción "other".
 
-- Copiamos el contenido que nos da (**o el modificado facilitado por Alejandro**, _se puede encontrar en la carpeta de este repositorio_) en un archivo creado en la carpeta .github/workflows/nombreQueQueramos.yml (en este ejemplo el nombre del archivo será sonar.yml)
+- Copiamos el contenido que nos da (**o el modificado facilitado por Alejandro**, _el código a continuación_) en un archivo creado en la carpeta .github/workflows/nombreQueQueramos.yml (en este ejemplo el nombre del archivo será **sonar.yml**)
 
 ```yml
 name: Sonar #Nombre del fichero
@@ -121,11 +121,13 @@ jobs:
 
 ---
 
-- Continuamos las instrucciones de SonarCloud y creamos en la raíz de nuestro proyecto (en VScode) el archivo con nombre `sonar-project.properties` y copiamos dentro el texto que nos da sonar y le añadimos esta línea:
+- Continuamos las instrucciones de SonarCloud y creamos en la raíz de nuestro proyecto (en VScode) el archivo con nombre `sonar-project.properties` y copiamos dentro el texto que nos da sonar y le añadimos estas líneas. La primera sirve para que sonar coja los datos de coverage de nuestra carpeta coverage (que se generará cuando ejecutemos `npm test`); la segunda línea hace que sonar excluya la comprobación de los archivos de test a la hora de comprobar el coverage (no tiene sentido intentar testear un archivo de test):
 
-```properties
-sonar.javascript.lcov.reportPaths=coverage/lcov.info
-```
+  ```properties
+  sonar.javascript.lcov.reportPaths=coverage/lcov.info
+   sonar.excludes.coverage = *.test.*
 
+   # Los asteriscos dependerán de dónde estén los archivos de test, ** sirve para indicar 'Cualquier nombre de carpeta' y * sirve para indicar 'Cualquier palabra en el nombre del archivo'
+  ```
 
 [^1]: Si utilizamos el comando "test:prod": "jest --coverage" Es posible que Jest no cubra todos los test realizados.

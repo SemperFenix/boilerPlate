@@ -281,14 +281,76 @@ new Header("");
   import "./style.css"; // El nombre es el nombre del archivo que queramos importar, si fuera de sass, sería ./style.scss o header.scss
   ```
 
+  > Esto lo podemos hacer porque estamos utilizando _Vite_, si no tendríamos que hacerlo de otra manera.
+
   - Si queremos utilizar SASS, crearemos un archivo scss en vez de css, Vite se encargará de convertirlo en css y compilarlo.
 
   > Cuando ejecutemos `npm run build` crearaá en la carpeta dist todos los archivos necesarios.
 
-  ## FAVICON
+## FAVICON
 
-  > El archivo del favicon lo pondremos directamente en la carpeta `public` y no hace falta añadirlo al index.html.
-
+> El archivo del favicon lo pondremos directamente en la carpeta `public` y no hace falta añadirlo al index.html.
+>
 > Vite además, mimifica los archivos (les quita todos los espacios, saltos de carro, variables, etc.) para reducir el peso de los archivos.
+
+</div>
+
+<div id="id6">
+
+## CRUD Tasks (To do List)
+
+### **C**reate
+
+### **R**ead
+
+### **U**pdate
+
+### **D**elete
+
+Dentro de la carpeta _models_ añadimos el archivo con la tarea (_task.ts_).
+
+Podemos crear la tarea usando _**class**_ (para generar los datos a través de `new`) - no la vamos a utilizar casi nunca -, _**type**_ o _**interface**_ (que son intercambiables en la práctica)
+
+> Se supone que los interfaces se utilizan sólo para definir métodos, pero al final son indistinguibles.
+
+```typescript
+type HasId = {
+  id: string;
+};
+
+export type ProtoTaskStructure = {
+  name: string;
+  owner: string;
+  isCompleted: boolean;
+};
+
+export type TaskStructure = HasId & ProtoTaskStructure;
+
+class Task implements TaskStructure {
+  id: string; // Al pasarlo por aquí no tendremos que usarlo como parámetro en el constructor, lo asignará automático
+  isCompleted: boolean;
+  static generateId() {
+    // Este método genera un valor aleatorio muy grande, lo usamos tal cual sin plantearnos mucho.
+    const aNumbers = new Uint32Array(1);
+    crypto.getRandomValues(aNumbers);
+    return ("000000" + aNumbers[0]).slice(-6);
+  }
+
+  // static son métodos que residen en la clase sin necesidad de instanciarla. Los llamamos desde el nombre de la clase.método .
+  // Podemos utilizar los métodos estáticos en cualquier momento, sin necesidad de tener instanciado un objeto de la clase o tipo.
+  // La clase Math, es un ejemplo de clase no instanciable que sólo contiene métodos estáticos
+  constructor(public name: string, public owner: string) {
+    this.id = Task.generateId();
+    this.isCompleted = false;
+  }
+}
+```
+
+```typescript
+export const Task: TaskStructure[] = [
+  { id: "16493", name: "Papelera", owner: "Pedro", isCompleted: false },
+  new Task("Nevera", "Luisa"),
+];
+```
 
 </div>
