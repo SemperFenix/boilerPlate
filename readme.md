@@ -10,7 +10,7 @@
 
 5.  Añadir .gitignore, .editorconfig y readme.
 
-6.  Instalar todo lo necesario para el proyecto (en nuestro caso): `npm i -D husky eslint eslint-config-prettier jest @types/jest ts-jest jest-environment-jsdom @types/node typescript vite sass @testing-library/dom @testing-library/jest-dom`
+6.  Instalar todo lo necesario para el proyecto (en nuestro caso): `npm i -D husky eslint eslint-config-prettier jest @types/jest ts-jest jest-environment-jsdom @types/node typescript vite sass @testing-library/dom @testing-library/jest-dom identity-obj-proxy`
 
 7.  Ahora comenzamos la configuración:
 
@@ -115,7 +115,7 @@
           /* Modules */
           "module": "ESNext" /* Specify what module code is generated. */,
           "rootDir": "./src" /* Specify the root folder within your source files. */,
-          // "moduleResolution": "node",                       /* Specify how TypeScript looks up a file from a given module specifier. */
+          "moduleResolution": "node" /* Specify how TypeScript looks up a file from a given module specifier. */,
           // "baseUrl": "./",                                  /* Specify the base directory to resolve non-relative module names. */
           // "paths": {},                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
           // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
@@ -199,6 +199,11 @@
         preset: "ts-jest",
         testEnvironment: "jsdom",
         testPathIgnorePatterns: ["dist"],
+        moduleNameMapper: {
+          "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+            "<rootDir>/mocks/assetsMock.js",
+          "\\.(css|scss)$": "identity-obj-proxy",
+        },
         // TEMP resolver: "jest-ts-webcompat-resolver",
       };
       ```
