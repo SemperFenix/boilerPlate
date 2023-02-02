@@ -323,7 +323,8 @@ Si queremos instalar huskys:
 - commit-msg:
 
   ```shell
-    #!/bin/sh
+    #!/usr/bin/env sh
+
   . "$(dirname "$0")/_/husky.sh"
 
   while read line; do
@@ -343,7 +344,8 @@ Si queremos instalar huskys:
 - pre-push
 
   ```shell
-    #!/bin/sh
+    #!/usr/bin/env sh
+
     . "$(dirname "$0")/_/husky.sh"
 
     local_branch_name="$(git rev-parse --abbrev-ref HEAD)"
