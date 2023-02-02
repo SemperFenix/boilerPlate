@@ -9,6 +9,7 @@ Podemos acceder a estas propiedades desde un archivo Javascript utilizando `docu
 3. [Linkeando archivos al HTML](#id3)
 4. [Componentes](#id4)
 5. [Estructura de ficheros](#id5)
+6. [Paso de métodos por propiedades](#id6)
 
 <div id="id1">
 
@@ -354,3 +355,5 @@ export const Task: TaskStructure[] = [
 ```
 
 </div>
+
+## Pasar métodos por propiedades

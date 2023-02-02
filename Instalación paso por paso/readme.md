@@ -1,5 +1,7 @@
 # Boiler plate
 
+Instalar todo lo necesario para el proyecto (en nuestro caso): `npm i -D husky eslint eslint-config-prettier jest @types/jest ts-jest jest-environment-jsdom @types/node typescript vite sass @testing-library/dom @testing-library/jest-dom identity-obj-proxy`
+
 - Añadir archivos base:
 
   - .editorconfig
@@ -197,9 +199,9 @@
 
     - Copiamos dentro de la carpeta .husky (en la raíz, no en la subcarpeta que crea dentro al instalarse) los archivos huskys.
 
-    ## Borrar un archivo/carpeta del remoto que ya se estaba pusheada
+## Borrar un archivo/carpeta del remoto que ya se estaba pusheada
 
-    `git rm --cached <file>`
+`git rm --cached <file>`
 
 [^1]: La imagen ha sido mal tomada, la opción que hay que seleccionar es la primera (Javascript modules (import/export)).
 [^2]: Si durante este proceso se nos añade el husky _pre-commit_ (instalado a modo de ejemplo), lo borramos, ya que si no, nos dará error (ya que ejecuta el script _test_ del package.json y, al dar error (ya que no tenemos nada creado) no permitirá hacer el commit)
