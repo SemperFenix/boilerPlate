@@ -39,5 +39,5 @@ En el index le decimos que en new Task introduzca una instancia de la nueva clas
 ```typescript
 new Tasks("main", new TaskStorageRepo());
 
-// En la definici'on de Tasks tendemos que modificar el valor del par'ametro que recibe a TaskStorageRepo
+// En la definici'on de Tasks tendemos que modificar el valor del par'ametro que recibe a public repogit ad: TaskStorageRepo
 ```
