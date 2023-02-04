@@ -310,6 +310,27 @@
 
   [^1]
 
+## Instalando un server
+
+Vamos a montar un entorno server "falso" con JSON server:
+
+1. Creamos una carpeta nueva llamada Server y la abrimos con VSCode. Esta carpeta estará en la misma carpeta que nuestro proyecto.
+2. Ejecutamos `npm init -y`
+3. Instalamos JSON server:
+
+    ```git
+    npm i -D json-server
+    ```
+
+4. Añadimos al package.json el script:
+5. Iniciamos el server con `npm start`.
+
+      ```json
+      "start": "json-server --watch db.json"
+       ```
+
+6. Creamos un nuevo archivo de servicios (task.api.repo.ts)
+
 ## Huskys
 
 Si queremos instalar huskys:
