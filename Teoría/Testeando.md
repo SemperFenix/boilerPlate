@@ -31,3 +31,49 @@ describe("Given Header component", () => {
 ```
 
 Es mejor si utilizamos la getByRole() ya que nos testea a la vez la accesibilidad. El rol de los distintos HTML tags los encontramos en mdn, dentro de la sección del tag
+
+## Testear fetch
+
+Para testear archivos que incluyen fetch, tenemos que _mockear_ esa función. Jest no la incorpora, ya que es una función de entorno Typescript.
+
+  ```typescript
+  // Esto mockea manualmente la devolución de una promesa
+    global.fetch = jest.fn(()=> 
+    Promise.resolve({
+      json: ()=> Promise.resolve*{rates:{ CAD: 1.42}}),
+    })
+    );
+  ```
+
+  ```typescript
+    const pepito = jest.fn().mockImplementation()
+
+    const juanito = () => { //Aquí va la implementación
+    }
+    pepito()
+   ```
+
+>Con `.mockResolvedValue()` podemos introducir el resultado de una promesa. **Así es como lo haremos, en vez de por el camino largo**.
+
+Si queremos testear el error que da una función:
+
+```typescript
+global.fetch = jest.fn().mockedResolvedValue({json: jest.fn().mockResolvedValue({Datos que quiero simular}),
+})
+```
+
+```typescript
+const pepito = jest.fn().mockRejectedValue(new Error ('Hola'))
+
+    const juanito = () => { //Aquí va la implementación
+    }
+    
+    try
+    const r = pepito()
+
+    expect(()=> pepito()).toThrow() // Esto nos permite testear errores SÍNCRONOS
+
+    expect(()=> pepito()).rejected()
+```
+
+Se recomienda leer [este artículo](https://www.leighhalliday.com/mock-fetch-jest).

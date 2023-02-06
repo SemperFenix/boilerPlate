@@ -104,3 +104,9 @@ try {
 ```
 
 > En estos momentos, jest no entiende esta estructura de programacion, por lo que no podriamos testear la funcion.
+
+La función _fetch_ devuelve un objeto de tipo _Response_. Sobre un Response podemos utilizar el _.status_ para ver qué nos devuelve el estado (200, 201, 404...)
+
+Cuando recibimos una promesa con await, no tenemos sus datos. Para extraer los datos tenemos que hacer un `.json()` de la respuesta.
+
+## Promise.all
