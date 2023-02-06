@@ -81,7 +81,7 @@ Cada hook tiene un funcionamiento diferente, hay 7 en total. Tres de ellos son f
 
 ### useState
 
-Espera un valor del estado y devuelve el valor que le pasemos. Esta es la manera en la cual gestionamos los cambios en pantalla desde React.
+Recibe un array de dos parámetros: el estado a cambiar y la función para cambiarlo.
 
 ```tsx
 import { useState } from "react";
@@ -111,8 +111,12 @@ export function Counter() {
 
 Con esto podemos ejecutar algo al mismo tiempo que se produce un cambio de estado. En el array de dependencias escribiremos lo que queramos "controlar" y, si esa dependencia cambia, se ejecutará el código dentro de la callback.
 
+>El código dentro de la callback se ejecuta siempre una vez al inicio de la carga y, después, tantas veces como cambie cualquiera de sus dependencias
+
 ```tsx
   useEffect(() => {
     console.log(count);
   }, [count]);
 ```
+
+>Si utilizamos useEffect con un array de dependencias vacío, ese código se ejecutará sólo una vez al principio de la página.
