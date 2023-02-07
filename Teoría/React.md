@@ -293,3 +293,7 @@ Para inicializar un estado, usamos el `useState()`, si queremos cargar datos des
 Use effect recibe dos parámentros, la callback que debe ejecutar y la función que dice cuándo hacerlo. Además, hay que decirle cuántas veces lo tiene que ejecutar.
 
 Primero pinto vacío, después recojo los datos (useEffect) y vuelvo a pintar los datos.
+
+## Formularios en React
+
+La gestión de los formularios en React es un poco extraña.
