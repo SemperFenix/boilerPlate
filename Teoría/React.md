@@ -151,6 +151,25 @@ Con esto podemos ejecutar algo al mismo tiempo que se produce un cambio de estad
 
 </div>
 
+### useRef
+
+```jsx
+const formContacts = useRef<HTMLFormElement>() //Es necesario tipar el useRef
+// Dentro de la etiqueta form, añadimos el atributo ref={formContacts}
+
+  const handleSubmit = (ev: SyntheticEvent) => {
+    ev.preventDefault();
+    const form = document.querySelector('form')
+  // Aquí cogeríamos los datos.
+}
+```
+
+Ref es un atributo que podemos añadir a cualquier elemento HTML que escribamos en React y siempre podemos acceder a él con useRef().
+
+### useContext
+
+Nos permite llamar a un contexto creado.
+
 ## Desestructuración de props
 
 Para pasar props en React tenemos que desestructar la prop. Sólo podemos desestructurar al declarar una variable. Podemos quedarnos sólo con las partes que nos interesan de esa variable.
@@ -296,4 +315,27 @@ Primero pinto vacío, después recojo los datos (useEffect) y vuelvo a pintar lo
 
 ## Formularios en React
 
-La gestión de los formularios en React es un poco extraña.
+La gestión de los formularios en React es un poco extraña. Podemos gestionarlos de tres maneras diferentes, dos descontroladas y una controlada:
+
+```jsx
+  const handleSubmit = (ev: SyntheticEvent) => {
+    ev.preventDefault();
+    const form = document.querySelector('form')
+  // Aquí cogeríamos los datos.
+}
+```
+
+Hay una manera mucho mejor, utilizando un hook de React `useRef`
+
+```jsx
+const formContacts = useRef<HTMLFormElement>() //Es necesario tipar el useRef
+// Dentro de la etiqueta form, añadimos el atributo ref={formContacts}
+
+  const handleSubmit = (ev: SyntheticEvent) => {
+    ev.preventDefault();
+    const form = document.querySelector('form')
+  // Aquí cogeríamos los datos.
+}
+```
+
+Ref es un atributo que podemos añadir a cualquier elemento HTML que escribamos en React y siempre podemos acceder a él con useRef().

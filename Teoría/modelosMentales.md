@@ -330,3 +330,7 @@ s1.greetings(); // Output: Hola, soy Ramón. Estudio Angular.
 ```
 
 > No se puede extender más de una clase.
+
+## Funcionamiento de React, contextos e intercambio con la API
+
+![Modelo mental contexto](../images/ModeloMentalContexto.png)
