@@ -135,6 +135,14 @@ export function Counter() {
 }
 ```
 
+#### Cómo funciona setState
+
+Copia el valor del estado que recibe y lo guarda en una estructura especial `closure`. Después re-renderiza el componente. Esto genera una nueva declaración de useState donde el initialState es el que ha guardado, de esta manera modifica el estado pese a que éste sea una constante.
+
+#### useCallback
+
+Cuando tenemos una función dentro del useEffect necesitamos utilizar el useCallback, ya que useCallback almacena la función en el closure y evita que se re-renderice una y otra vez creando un bucle infinito.
+
 ### useEffect
 
 Con esto podemos ejecutar algo al mismo tiempo que se produce un cambio de estado. En el array de dependencias escribiremos lo que queramos "controlar" y, si esa dependencia cambia, se ejecutará el código dentro de la callback.
@@ -339,3 +347,88 @@ const formContacts = useRef<HTMLFormElement>() //Es necesario tipar el useRef
 ```
 
 Ref es un atributo que podemos añadir a cualquier elemento HTML que escribamos en React y siempre podemos acceder a él con useRef().
+
+## useReducer
+
+Es el Hook que implementó React para implementar Flux sin utilizar la librería de Redux.
+
+Su uso es casi idéntico al useState, pero tenemos que darle también un reducer:
+
+```typescript
+  const [state, dispatcher] = useReducer(reducer, initialstate)
+```
+
+### Reducer
+
+El reducer va a ser una función pura (no modifica ni depende de nada externo y siempre devuelve lo mismo para unos argumentos iguales, es predecible). Además recibe un estado y una acción y devuelve un estado nuevo.
+
+```typescript
+const notesActions = {
+  // Creamos este objeto para asegurarnos de que los valores de las acciones son estos concretos.
+  add: 'notes@Add',
+  load: 'notes@load',
+  update: 'notes@update',
+  delete: 'notes@delete'
+  // La @ se escribe en las acciones por convenio para clarificar el uso (elemento a modificar @ modificacion).
+}
+
+interface Action {
+  type: string;
+  payload?: any // El símbolo ? indica que la propiedad es opcional.
+}
+
+interface NotesAction extends Action {
+  // type: keyof typeof notesAction,
+  payload: NoteStructure | NoteStructure []
+}
+
+const loadNotesCreator = (payload: NoteStructure[]): NotesAction => {
+  return {
+  type: notesActions.load,
+  payload // Al no poner los dos puntos almacenamos una propiedad cuya key es igual que el valor
+  }
+}
+
+const addNotesCreator = () => {
+  ...
+}
+// Tener esto en el mismo archivo no es habitual, por lo que tendremos un notes.actions.ts para guardar las acciones, un notes.action.creators.ts donde almacenaremos la creaci'on de acciones.
+
+export function notesReducer (state: any, action: NotesAction): NoteStructure [] {
+
+// Es importante tipar la salida del Reducer
+
+switch (action.type){
+
+  case notesActions.load:
+    return action.payload;
+
+  case notesActions.add:
+    return [...state, action.payload]
+
+  default:
+    return state
+
+}
+}
+```
+
+De esta manera, el reducer que funciona con esto quedaría:
+
+```typescript
+const [notes, dispatch] = useReducer(notesReducer, initialState)
+```
+
+Ahora, en vez de llamar a setState cuando ocurra algo que modfique el estado, llamamos a dispatch.
+
+```typescript
+const loadNotes = useCallback(async () => {
+    try {
+      const notes = await repo.loadNotes();
+      // setNotes(notes);
+      dispatch(ac.loadNotesCreator(notes)) // Importamos todas las acciones notes.reducer as ac
+    } catch (error) {
+      handlerError(error as Error);
+    }
+  }, [repo]);
+```

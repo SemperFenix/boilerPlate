@@ -13,3 +13,7 @@ Las instancias de una nueva clase deben ir envueltas en un try-catch. La estruct
 Un modal es un pop-up que bloquea la pantalla hasta que se cierra. Es un componente más.
 
 Se crea a través de la etiqueta HTML `<dialog></dialog>`, que es una de las dos etiquetas interactivas.
+
+## Patrón singleton
+
+Conseguir una sola instancia de una llamada (memonización), lo hacemos a través de useCallback o useMemo.
