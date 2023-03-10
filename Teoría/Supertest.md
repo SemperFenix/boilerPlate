@@ -1,8 +1,10 @@
 # Supertest
 
+Supertest es un test de integración. Su perspectiva es la contraria al test unitario. Lo que queremos comprobar es que todo nuestro programa funciona correctamente en conjunto.
+
 npm i supertest @types/supertest
 
-Creamos la carpeta e2e (end to end).
+Creamos la carpeta e2e (end to end) o lo guardamos donde consideremos (por ejemplo, la carpeta de los router es una buena opción).
 
 Creamos un archivo de testeo del endpoint (el que corresponda) y le añadmos la extensión spect en vez de test para poder ignorarlos luego en el coverage.
 
